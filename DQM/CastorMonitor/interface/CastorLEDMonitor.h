@@ -37,11 +37,9 @@ public:
   CastorLEDMonitor(const edm::ParameterSet& ps); 
   ~CastorLEDMonitor(); 
 
-  void setup(const edm::ParameterSet& ps, DQMStore* dbe);
+  void setup(const edm::ParameterSet& ps);
  void bookHistograms(DQMStore::IBooker &, edm::Run const &, edm::EventSetup const &);
-//  void beginRun(const edm::EventSetup& iSetup);
-  void processEvent(const CastorDigiCollection& cast, const CastorDbService& cond);
-  void reset();
+ void processEvent(const CastorDigiCollection& cast, const CastorDbService& cond);
   void done();
 
 private:
@@ -53,69 +51,6 @@ private:
   MonitorElement *h2meanMap;
   MonitorElement *h2QvsPMT;
 
-/* obsolete	2014 dec
-  // and this is just a very dumb way of doing the adc->fc conversion in the
-  // full range (and is the same for all channels and cap-ids)
-  void perChanHists(const HcalCastorDetId DetID, float* vals, 
-		    std::map<HcalCastorDetId, MonitorElement*> &tShape, 
-		    std::map<HcalCastorDetId, MonitorElement*> &tTime, 
-		    std::map<HcalCastorDetId, MonitorElement*> &tEnergy,
-		    std::string baseFolder);
-
-  void createFEDmap(unsigned int fed);
-  std::map<HcalCastorDetId, MonitorElement*>::iterator meIter;
-  std::map<unsigned int, MonitorElement*>::iterator fedIter;
-  bool doPerChannel_;
-//  int sigS0_, sigS1_; //-- first and last signal bins
-//  float adcThresh_;
-  int ievt_, jevt_;
-  CastorCalibrations calibs_;
-*/  
-/*
- private: //monitoring elements...
-  MonitorElement* meEVT_;
-  struct{
-    std::map<HcalCastorDetId,MonitorElement*> shape;
-    std::map<HcalCastorDetId,MonitorElement*> time;
-    std::map<HcalCastorDetId,MonitorElement*> energy;
-
-    MonitorElement* shapePED;
-    MonitorElement* shapeALL;
-    MonitorElement* timeALL;
-    MonitorElement* energyALL;
-
-    MonitorElement* rms_shape;
-    MonitorElement* mean_shape;
-
-    MonitorElement* rms_time;
-    MonitorElement* mean_time;
-
-    MonitorElement* rms_energy;
-    MonitorElement* mean_energy;
-
-  } castHists;
-
-  MonitorElement* MEAN_MAP_TIME_L1;
-  MonitorElement*  RMS_MAP_TIME_L1;
-
-  MonitorElement* MEAN_MAP_TIME_L2;
-  MonitorElement*  RMS_MAP_TIME_L2;
-
-  MonitorElement* MEAN_MAP_TIME_L3;
-  MonitorElement*  RMS_MAP_TIME_L3;
-
-  MonitorElement* MEAN_MAP_TIME_L4;
-  MonitorElement*  RMS_MAP_TIME_L4;
-
-  std::map<unsigned int,MonitorElement*> MEAN_MAP_ENERGY_DCC;
-  std::map<unsigned int,MonitorElement*> RMS_MAP_ENERGY_DCC;
-  
-  std::map<unsigned int,MonitorElement*> MEAN_MAP_SHAPE_DCC;
-  std::map<unsigned int,MonitorElement*> RMS_MAP_SHAPE_DCC;
-
-  std::map<unsigned int,MonitorElement*> MEAN_MAP_TIME_DCC;
-  std::map<unsigned int,MonitorElement*> RMS_MAP_TIME_DCC;
-*/
 };
 
 #endif
