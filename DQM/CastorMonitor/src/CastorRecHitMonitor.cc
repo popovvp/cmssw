@@ -51,7 +51,7 @@ void CastorRecHitMonitor::bookHistograms(DQMStore::IBooker& ibooker,
     h2RHvsSec->getTH2F()->SetOption("colz");
 
   sprintf(s,"CastorTileRecHit");
-    h2RHchan = ibooker.book2D(s,s, 224, 0,224, 5100, -1000,50000.);
+    h2RHchan = ibooker.book2D(s,s, 224, 0,224, 2050, -1000,40000.);
     h2RHchan->getTH2F()->GetXaxis()->SetTitle("sector*14+module");
     h2RHchan->getTH2F()->GetYaxis()->SetTitle("RecHit");
     h2RHchan->getTH2F()->SetOption("colz");  
