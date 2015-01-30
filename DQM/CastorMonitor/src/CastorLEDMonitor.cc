@@ -45,9 +45,9 @@ void CastorLEDMonitor::bookHistograms(DQMStore::IBooker& ibooker,
    h2qts->getTH2F()->SetOption("colz");
 
   sprintf(s,"CastorLED_qVsPMT");
-   h2QvsPMT = ibooker.book2D(s,s, 224,0,224, 5000,0.,50000.);    
+   h2QvsPMT = ibooker.book2D(s,s, 224,0,224, 1000,0.,20000.);    
    h2QvsPMT->getTH2F()->GetXaxis()->SetTitle("sector*14+module");
-   h2QvsPMT->getTH2F()->GetYaxis()->SetTitle("RecHit");
+   h2QvsPMT->getTH2F()->GetYaxis()->SetTitle("Q,fc");
    h2QvsPMT->getTH2F()->SetOption("colz");
 
   sprintf(s,"CastorLEDqMap(cumulative)");
