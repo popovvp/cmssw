@@ -64,6 +64,11 @@ void CastorDigiMonitor::bookHistograms(DQMStore::IBooker& ibooker,
         hSector = ibooker.book1D(s,s,16,0.,16.);
 	hSector->getTH1F()->GetXaxis()->SetTitle("SectorPhi");
 	hSector->getTH1F()->GetYaxis()->SetTitle("QIE(fC)");
+    sprintf(s,"QfC=f(Sector TS) (cumulative)");
+       h2QtsvsSec = ibooker.book2D(s,s,16,0.,16., 10,0.,10.);
+       h2QtsvsSec->getTH2F()->GetXaxis()->SetTitle("sectorPhi");
+       h2QtsvsSec->getTH2F()->GetYaxis()->SetTitle("TS");
+       h2QtsvsSec->getTH2F()->SetOption("colz");
     sprintf(s,"QfC=f(Tile TS) (cumulative)");
        h2QtsvsCh = ibooker.book2D(s,s,224,0.,224., 10,0.,10.);
   h2QtsvsCh->getTH2F()->GetXaxis()->SetTitle("Tile(=sector*14+module)");
@@ -120,6 +125,7 @@ void CastorDigiMonitor::processEvent(const CastorDigiCollection& castorDigis,
      if(err !=0) h2digierr->Fill(module,sector);
      int ind = sector*14 + module;
      h2QtsvsCh->Fill(ind,i,LedMonAdc2fc[rawd]);
+     h2QtsvsSec->Fill(sector,i,LedMonAdc2fc[rawd]);
      sum += LedMonAdc2fc[rawd];
 //     if(err != 0 && fVerbosity>0)
 //     std::cout<<"event/idigi=" <<ievt_<<"/" <<i<< " cap_cap1_dv_er: " <<
